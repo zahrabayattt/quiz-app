@@ -24,7 +24,7 @@
   --color-my-primary: #6f42c1;
   --color-foreground: #ffffff;
   --color-foreground-tertiary: #666666;
-  --color-secondry: #417f25;
+  --color-my-secondary: #417f25;
 }
 
 @layer components {
@@ -34,5 +34,12 @@
 
   .my-btn-primary {
     @apply bg-my-primary;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .row-center {
+    @apply flex items-center;
   }
 }

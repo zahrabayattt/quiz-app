@@ -1,10 +1,10 @@
-import Avatar from "../assets/images/avatar.png";
-import themetoggle from "../assets/images/theme & profile.png";
-import Container from "./Container";
+import Avatar from "../../assets/images/avatar.png";
+import themetoggle from "../../assets/images/theme & profile.png";
+import LayoutContainer from "./LayoutContainer";
 const Navbar = () => {
   return (
     <header className="bg-header-bg py-4">
-      <Container className="flex items-center justify-between">
+      <LayoutContainer className="flex items-center justify-between">
         <a href="/" className="text-2xl font-bold text-white">
           Quiz
         </a>
@@ -16,7 +16,7 @@ const Navbar = () => {
           />
           <img src={Avatar} alt="Avatar" />
         </div>
-      </Container>
+      </LayoutContainer>
     </header>
   );
 };

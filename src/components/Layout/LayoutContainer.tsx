@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-const Container = ({
+const LayoutContainer = ({
   children,
   className,
 }: {
@@ -12,4 +12,4 @@ const Container = ({
   );
 };
 
-export default Container;
+export default LayoutContainer;

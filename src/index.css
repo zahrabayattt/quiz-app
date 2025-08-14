@@ -25,6 +25,8 @@
   --color-foreground: #ffffff;
   --color-foreground-tertiary: #666666;
   --color-my-secondary: #417f25;
+  --color-error: #ef4444;
+  --shadow-card-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 @layer components {

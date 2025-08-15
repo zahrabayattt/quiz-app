@@ -13,9 +13,11 @@ const QuizCard = ({ question }: IQuizCard) => {
         <QuizAnswer key={answer.id} answer={answer} />
       ))}
       <hr className="border-0.5 mt-7 mb-5 border-foreground-tertiary"></hr>
-      <button className="my-btn-primary my-btn text-foreground">
-        Submit answer
-      </button>
+      <div>
+        <button className="my-btn-primary my-btn text-foreground">
+          Submit answer
+        </button>
+      </div>
     </>
   );
 };

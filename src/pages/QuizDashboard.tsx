@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
 import pluscircle from "../assets/images/plus-circle.png";
-import Vector from "../assets/images/Vector.png";
 import LayoutContainer from "../components/Layout/LayoutContainer";
 import Navbar from "../components/Layout/Navbar";
+import QuizList from "../components/Quiz/QuizList";
 
 const QuizDashboard = () => {
   const navigate = useNavigate();
@@ -20,18 +20,7 @@ const QuizDashboard = () => {
             New Quiz
           </button>
         </section>
-        <div className="flex flex-col rounded-xl border border-foreground-tertiary p-6">
-          <section className="flex items-center justify-between">
-            <p className="text-foreground-tertiary">John Doe Feb 28 , 2025</p>
-            <div className="flex gap-3">
-              <button className="flex items-center rounded-2xl bg-white px-4 py-1 text-my-secondary">
-                Publish
-              </button>
-              <img className="object-contain" src={Vector} alt="Vector" />
-            </div>
-          </section>
-          <hr className="border-0.5 mt-5 mb-3 border-foreground-tertiary"></hr>
-        </div>
+        <QuizList />
       </LayoutContainer>
     </div>
   );

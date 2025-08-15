@@ -3,7 +3,6 @@ import pluscircle from "../assets/images/plus-circle.png";
 import Vector from "../assets/images/Vector.png";
 import LayoutContainer from "../components/Layout/LayoutContainer";
 import Navbar from "../components/Layout/Navbar";
-import QuizList from "../components/Quiz/QuizList";
 
 const QuizDashboard = () => {
   const navigate = useNavigate();
@@ -32,7 +31,6 @@ const QuizDashboard = () => {
             </div>
           </section>
           <hr className="border-0.5 mt-5 mb-3 border-foreground-tertiary"></hr>
-          <QuizList />
         </div>
       </LayoutContainer>
     </div>

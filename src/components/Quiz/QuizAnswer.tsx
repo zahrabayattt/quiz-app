@@ -1,4 +1,4 @@
-import type { AnswerModel } from "../../@types/question.model";
+import type { AnswerModel } from "../../@types/quiz.model";
 interface IQuizAnswer {
   answer: AnswerModel;
 }

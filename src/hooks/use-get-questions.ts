@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { QuestionModel } from "../@types/question.model";
+import type { QuestionModel } from "../@types/quiz.model";
 import { axiosInstance } from "../lib/utils";
 const useGetQuestions = () => {
   return useQuery({

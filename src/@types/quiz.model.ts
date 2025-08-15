@@ -13,3 +13,11 @@ export type QuestionModel = {
   updatedAt: Date;
   answers: AnswerModel[];
 };
+
+export type CreateQuizPayload = {
+  title: string;
+  answers: {
+    text: string;
+    isCorrect: boolean;
+  }[];
+};

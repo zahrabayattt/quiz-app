@@ -46,7 +46,30 @@ export default function QuizCreate() {
                 Fill in the details to create a new question with at least 4
                 answers.
               </p>
-
+              {/* Right column: Status toggle & small info */}
+              <aside className="hidden md:block mb-5">
+                <div className="rounded-lg border border-foreground-tertiary p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-border-primary">Status</div>
+                      <div className="text-xs text-foreground-tertiary">
+                        Your post will be saved as a public
+                      </div>
+                    </div>
+                    <label className="swap swap-rotate">
+                      <input
+                        type="checkbox"
+                        checked={statusPublic}
+                        onChange={() => setStatusPublic((s) => !s)}
+                      />
+                      <div className="swap-on btn btn-sm btn-success">On</div>
+                      <div className="swap-off btn-my-secondary btn btn-sm">
+                        Off
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </aside>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="border-foreground-tertiary">
                   <label className="mb-2 block text-lg font-semibold text-background">
@@ -161,31 +184,6 @@ export default function QuizCreate() {
                 </div>
               </form>
             </section>
-
-            {/* Right column: Status toggle & small info */}
-            <aside className="hidden md:block">
-              <div className="rounded-lg border border-foreground-tertiary p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm text-border-primary">Status</div>
-                    <div className="text-xs text-foreground-tertiary">
-                      Your post will be saved as a public
-                    </div>
-                  </div>
-                  <label className="swap swap-rotate">
-                    <input
-                      type="checkbox"
-                      checked={statusPublic}
-                      onChange={() => setStatusPublic((s) => !s)}
-                    />
-                    <div className="swap-on btn btn-sm btn-success">On</div>
-                    <div className="swap-off btn-my-secondary btn btn-sm">
-                      Off
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </aside>
           </div>
         </div>
       </main>

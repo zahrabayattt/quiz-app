@@ -14,7 +14,7 @@ const Footer = () => {
         <AiOutlineHome size={24} />
       </button>
 
-      {/* Add button (center, highlighted) */}
+      {/* Add button */}
       <button
         className="flex-center -mt-8 h-16 w-16 rounded-full bg-my-primary text-foreground shadow-lg"
         onClick={() => navigate("/create-quiz")}
@@ -22,7 +22,7 @@ const Footer = () => {
         <AiOutlinePlus size={28} />
       </button>
 
-      {/* History/Back button */}
+      {/* History button */}
       <button
         className="flex-center flex-col text-foreground-tertiary hover:text-my-primary"
         onClick={() => alert("history")}

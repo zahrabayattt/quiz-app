@@ -1,6 +1,9 @@
-import AnswerInput from "../components/AnswerInput";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 import Footer from "../components/Layout/Footer";
 import Navbar from "../components/Layout/Navbar";
+import AnswerInput from "../components/Quiz/AnswerInput";
+import useGetQuestion from "../hooks/use-get-question";
 import useQuizCreateForm from "../hooks/useQuizCreateForm";
 
 export default function QuizCreate() {
@@ -22,8 +25,20 @@ export default function QuizCreate() {
     removeCorrect,
     removeIncorrect,
     handleSubmit,
+    initializeData,
   } = useQuizCreateForm();
 
+  const { questionId } = useParams<{ questionId: string }>();
+  console.log("questionId:", questionId, "Number:", Number(questionId));
+
+  const { data: questionData } = useGetQuestion(Number(questionId));
+
+  useEffect(() => {
+    console.log("questionData:", questionData);
+    if (questionData) {
+      initializeData(questionData);
+    }
+  }, [questionData, initializeData]);
   return (
     <>
       <Navbar />
@@ -47,7 +62,7 @@ export default function QuizCreate() {
                 answers.
               </p>
               {/* Right column: Status toggle & small info */}
-              <aside className="hidden md:block mb-5">
+              <aside className="mb-5 hidden md:block">
                 <div className="rounded-lg border border-foreground-tertiary p-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -179,7 +194,7 @@ export default function QuizCreate() {
                     disabled={isSubmitting || totalAnswersCount < 4}
                     className="cursor-pointer rounded-md bg-my-primary px-5 py-2 text-foreground disabled:opacity-50"
                   >
-                    {isSubmitting ? "Creating..." : "Create Quiz"}
+                    {questionId ? "Update Quiz" : "Create Quiz"}
                   </button>
                 </div>
               </form>

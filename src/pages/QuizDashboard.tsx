@@ -1,14 +1,17 @@
+import { LucideLoader2 } from "lucide-react";
 import { useNavigate } from "react-router";
 import pluscircle from "../assets/images/plus-circle.png";
 import Footer from "../components/Layout/Footer";
 import LayoutContainer from "../components/Layout/LayoutContainer";
 import Navbar from "../components/Layout/Navbar";
 import QuizList from "../components/Quiz/QuizList";
+import useGetQuestions from "../hooks/use-get-questions";
 
 const QuizDashboard = () => {
+  const { isLoading } = useGetQuestions();
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-foreground">
       <Navbar />
       {/* Mobile-only footer */}
       <div className="fixed right-0 bottom-0 left-0 md:hidden">
@@ -19,7 +22,7 @@ const QuizDashboard = () => {
       <div className="hidden md:block">
         <LayoutContainer>
           <section className="my-5 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 className="text-2xl font-bold text-light-foreground-primary">
               Quiz Dashboard
             </h2>
             <button
@@ -34,6 +37,12 @@ const QuizDashboard = () => {
               New Quiz
             </button>
           </section>
+          {isLoading && (
+            <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center gap-5">
+              <LucideLoader2 className="animate-spin" />
+              <p className="">Questions are loading...</p>
+            </div>
+          )}
           <QuizList />
           <Footer />
         </LayoutContainer>

@@ -21,3 +21,12 @@ export type CreateQuizPayload = {
     isCorrect: boolean;
   }[];
 };
+
+export type UpdateQuizPayload = {
+  title: string;
+  answers: {
+    id: number;
+    text: string;
+    isCorrect: boolean;
+  }[];
+};

@@ -1,7 +1,11 @@
 import QuizDashboard from "./pages/QuizDashboard";
 
 const App = () => {
-  return <QuizDashboard />;
+  return (
+    <>
+      <QuizDashboard />
+    </>
+  );
 };
 
 export default App;

@@ -1,9 +1,14 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 import type { CreateQuizPayload, QuestionModel } from "../@types/quiz.model";
 import { axiosInstance } from "../lib/utils";
 
-const useCreateQuiz = () => {
+const useCreateQuestion = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   return useMutation({
     mutationFn: async (payload: CreateQuizPayload) => {
       // 1. Create question
@@ -35,7 +40,15 @@ const useCreateQuiz = () => {
       await Promise.all(answersPromises);
       return quizId;
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["questions"] });
+      navigate("/dashboard");
+      toast.success("Question created successfully");
+    },
+    onError: () => {
+      toast.error("Failed to create the questio, Please try again");
+    },
   });
 };
 
-export default useCreateQuiz;
+export default useCreateQuestion;

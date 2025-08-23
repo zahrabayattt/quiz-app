@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type {
   CreateQuizPayload,
   UpdateQuizPayload,
@@ -7,10 +7,7 @@ import { type QuestionModel } from "../@types/quiz.model";
 import useCreateQuestion from "./use-create-question";
 import useUpdateQuestion from "./use-update-question";
 
-export default function useQuizCreateForm(
-  questionId?: number,
-  questionData?: QuestionModel,
-) {
+export default function useQuizCreateForm(initialData?: QuestionModel) {
   const [question, setQuestion] = useState("");
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([""]);
   const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>([
@@ -18,40 +15,40 @@ export default function useQuizCreateForm(
     "",
     "",
   ]);
-  const [correctAnswersIds, setCorrectAnswersIds] = useState<number[]>([0]);
-  const [incorrectAnswersIds, setIncorrectAnswersIds] = useState<number[]>([
-    0, 0, 0,
-  ]);
+  const [correctAnswersIds, setCorrectAnswersIds] = useState<number[]>([]);
+  const [incorrectAnswersIds, setIncorrectAnswersIds] = useState<number[]>([]);
   const [statusPublic, setStatusPublic] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
-  const [initialized, setInitialized] = useState(false);
 
   const createQuizMutation = useCreateQuestion();
-  const updateQuizMutation = useUpdateQuestion(questionId ?? 0);
-  const isSubmitting = createQuizMutation.isPending;
+  const updateQuizMutation = useUpdateQuestion(initialData?.id ?? 0);
+  const isSubmitting =
+    createQuizMutation.isPending || updateQuizMutation.isPending;
+
+  useEffect(() => {
+    if (initialData) {
+      setQuestion(initialData.question);
+      setCorrectAnswers(
+        initialData.answers.filter((a) => a.isCorrect).map((a) => a.answerText),
+      );
+      setIncorrectAnswers(
+        initialData.answers
+          .filter((a) => !a.isCorrect)
+          .map((a) => a.answerText),
+      );
+      setCorrectAnswersIds(
+        initialData.answers.filter((a) => a.isCorrect).map((a) => a.id),
+      );
+      setIncorrectAnswersIds(
+        initialData.answers.filter((a) => !a.isCorrect).map((a) => a.id),
+      );
+    }
+  }, [initialData]);
 
   const totalAnswersCount =
     correctAnswers.filter(Boolean).length +
     incorrectAnswers.filter(Boolean).length;
-
-  const initializeData = (questionData: QuestionModel) => {
-    if (!questionData || initialized) return;
-    setQuestion(questionData.question);
-    setCorrectAnswers(
-      questionData.answers.filter((a) => a.isCorrect).map((a) => a.answerText),
-    );
-    setIncorrectAnswers(
-      questionData.answers.filter((a) => !a.isCorrect).map((a) => a.answerText),
-    );
-    setCorrectAnswersIds(
-      questionData.answers.filter((a) => a.isCorrect).map((a) => a.id),
-    );
-    setIncorrectAnswersIds(
-      questionData.answers.filter((a) => !a.isCorrect).map((a) => a.id),
-    );
-    setInitialized(true);
-  };
 
   const addCorrect = () => {
     setCorrectAnswers((s) => [...s, ""]);
@@ -113,7 +110,7 @@ export default function useQuizCreateForm(
     ];
 
     try {
-      if (questionId) {
+      if (initialData?.id) {
         await updateQuizMutation.mutateAsync({
           title: question.trim(),
           answers: answersPayloadUpdate,
@@ -128,14 +125,11 @@ export default function useQuizCreateForm(
         setQuestion("");
         setCorrectAnswers([""]);
         setIncorrectAnswers(["", "", ""]);
-        setCorrectAnswersIds([0]);
-        setIncorrectAnswersIds([0, 0, 0]);
+        setCorrectAnswersIds([]);
+        setIncorrectAnswersIds([]);
       }
     } catch (err: any) {
-      setError(
-        err.message ||
-          "There was a problem saving the question. Please try again later",
-      );
+      setError(err.message || "There was a problem saving the question.");
     }
   };
 
@@ -159,6 +153,5 @@ export default function useQuizCreateForm(
     removeCorrect,
     removeIncorrect,
     handleSubmit,
-    initializeData,
   };
 }

@@ -24,11 +24,11 @@ const QuizList = () => {
   };
 
   const handleQuizEdit = (id: number) => {
-    navigate(`/create-quiz/${id}`);
+    navigate(`/edit-quiz/${id}`);
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="my-8 flex flex-col gap-10">
       {questions.map((question: QuestionModel) => (
         <div
           key={question.id}

@@ -16,34 +16,28 @@ const QuizDashboard = () => {
       <div className="fixed right-0 bottom-0 left-0 md:hidden">
         <Footer />
       </div>
-      <div className="hidden md:block">
-        <LayoutContainer>
-          <section className="my-5 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-light-foreground-primary">
-              Quiz Dashboard
-            </h2>
-            <button
-              className="my-btn flex cursor-pointer items-center gap-2 bg-my-primary text-foreground"
-              onClick={() => navigate("/create-quiz")}
-            >
-              <img
-                className="object-contain"
-                src={pluscircle}
-                alt="pluscircle"
-              />
-              New Quiz
-            </button>
-          </section>
-          {isLoading && (
-            <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center gap-5">
-              <LucideLoader2 className="animate-spin" />
-              <p className="">Questions are loading...</p>
-            </div>
-          )}
-          <QuizList />
-          <Footer />
-        </LayoutContainer>
-      </div>
+      <LayoutContainer>
+        <section className="my-5 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-light-foreground-primary">
+            Quiz Dashboard
+          </h2>
+          <button
+            className="my-btn flex cursor-pointer items-center gap-2 bg-my-primary text-foreground"
+            onClick={() => navigate("/create-quiz")}
+          >
+            <img className="object-contain" src={pluscircle} alt="pluscircle" />
+            New Quiz
+          </button>
+        </section>
+        {isLoading && (
+          <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center gap-5">
+            <LucideLoader2 className="animate-spin" />
+            <p className="">Questions are loading...</p>
+          </div>
+        )}
+        <QuizList />
+        <Footer />
+      </LayoutContainer>
     </div>
   );
 };

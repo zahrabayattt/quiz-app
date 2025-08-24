@@ -8,7 +8,7 @@ const useGetQuestions = () => {
       axiosInstance
         .get<QuestionModel[]>("quizzes/questions")
         .then((res) => res.data),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 3 * 60 * 1000,
   });
 };
 export default useGetQuestions;

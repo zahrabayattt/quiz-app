@@ -36,7 +36,6 @@ const QuizDashboard = () => {
           </div>
         )}
         <QuizList />
-        <Footer />
       </LayoutContainer>
     </div>
   );

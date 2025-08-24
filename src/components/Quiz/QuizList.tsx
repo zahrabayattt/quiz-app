@@ -9,7 +9,7 @@ import QuizCard from "./QuizCard";
 
 interface IActionType {
   type: "menu" | "delete" | "edit";
-  id: number;
+  questionid: number;
 }
 
 const QuizList = () => {
@@ -17,9 +17,11 @@ const QuizList = () => {
   const [action, setAction] = useState<IActionType | null>(null);
   const navigate = useNavigate();
 
-  const handleQuizAction = (id: number) => {
+  const handleQuizAction = (questionid: number) => {
     setAction((prev) =>
-      prev?.type === "menu" && prev.id === id ? null : { type: "menu", id },
+      prev?.type === "menu" && prev.questionid === questionid
+        ? null
+        : { type: "menu", questionid },
     );
   };
 
@@ -45,19 +47,22 @@ const QuizList = () => {
                   onClick={() => handleQuizAction(question.id)}
                   className="cursor-pointer object-contain"
                 />
-                {action?.type === "menu" && action.id === question.id && (
-                  <QuizAction
-                    question={question}
-                    handleQuizEdit={handleQuizEdit}
-                    handleQuizDelete={(id) => setAction({ type: "delete", id })}
-                  />
-                )}
+                {action?.type === "menu" &&
+                  action.questionid === question.id && (
+                    <QuizAction
+                      question={question}
+                      handleQuizEdit={handleQuizEdit}
+                      handleQuizDelete={(questionid) =>
+                        setAction({ type: "delete", questionid })
+                      }
+                    />
+                  )}
               </div>
             </div>
           </section>
           <hr className="border-0.5 mt-5 mb-3 border-light-border-primary"></hr>
           <QuizCard question={question} />
-          {action?.type === "delete" && action.id === question.id && (
+          {action?.type === "delete" && action.questionid === question.id && (
             <DeleteQuizModal
               questionId={question.id}
               quizTitle={question.question}

@@ -128,8 +128,10 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
         setCorrectAnswersIds([]);
         setIncorrectAnswersIds([]);
       }
-    } catch (err: any) {
-      setError(err.message || "There was a problem saving the question.");
+    } catch (err) {
+      setError(
+        (err as Error).message || "There was a problem saving the question.",
+      );
     }
   };
 

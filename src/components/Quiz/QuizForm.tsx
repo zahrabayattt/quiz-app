@@ -1,4 +1,5 @@
 import { type QuestionModel } from "../../@types/quiz.model";
+import LayoutContainer from "../../components/Layout/LayoutContainer";
 import useQuizCreateForm from "../../hooks/useQuizCreateForm";
 import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
@@ -11,13 +12,13 @@ interface IQuizForm {
 
 const QuizForm = ({ mode, initialData }: IQuizForm) => {
   const form = useQuizCreateForm(initialData);
-
   return (
     <>
       <Navbar />
       <main className="bg-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-10">
-          <nav className="mb-6 text-sm text-foreground-tertiary">
+        <LayoutContainer>
+          {" "}
+          <nav className="my-6 text-sm text-foreground-tertiary">
             <a href="/" className="underline">
               Quiz Dashboard
             </a>{" "}
@@ -26,8 +27,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
               {mode === "create" ? "New Quiz" : "Edit Quiz"}
             </span>
           </nav>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr,300px]">
+          <div className="mb-5 grid grid-cols-1 gap-8 md:grid-cols-[1fr,300px]">
             <section>
               <h1 className="text-3xl font-bold text-my-primary">
                 {mode === "create" ? "Create New QUIZ" : "Edit QUIZ"}
@@ -37,7 +37,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                   ? "Fill in the details to create a new question with at least 4 answers."
                   : "Update the details of your quiz question and answers."}
               </p>
-
               <aside className="mb-5 hidden md:block">
                 <div className="rounded-lg border border-foreground-tertiary p-4">
                   <div className="flex items-center justify-between">
@@ -61,7 +60,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                   </div>
                 </div>
               </aside>
-
               <form onSubmit={form.handleSubmit} className="space-y-6">
                 <div className="border-foreground-tertiary">
                   <label className="mb-2 block text-lg font-semibold text-background">
@@ -76,7 +74,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                     aria-label="question-input"
                   />
                 </div>
-
                 <div>
                   <h2 className="mb-2 text-2xl font-semibold text-background">
                     Answers
@@ -84,8 +81,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                   <p className="mb-4 text-sm text-foreground-tertiary">
                     Fill Correct Answers & Incorrect Answers.
                   </p>
-
-                  {/* Correct answers */}
                   <div className="relative mb-6 rounded-lg border p-4 shadow-card-shadow">
                     <div className="absolute top-0 bottom-0 left-0 w-2 rounded-l-md bg-my-secondary" />
                     <div className="mb-4 flex items-center justify-between">
@@ -117,8 +112,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                       ))}
                     </div>
                   </div>
-
-                  {/* Incorrect answers */}
                   <div className="relative rounded-lg border p-4 shadow-card-shadow">
                     <div className="absolute top-0 bottom-0 left-0 w-2 rounded-l-md bg-red-600" />
                     <div className="mb-4 flex items-center justify-between">
@@ -151,12 +144,10 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                     </div>
                   </div>
                 </div>
-
                 {form.error && <div className="text-error">{form.error}</div>}
                 {form.successMsg && (
                   <div className="text--my-secondary">{form.successMsg}</div>
                 )}
-
                 <div className="flex items-center justify-end gap-4">
                   <button
                     type="button"
@@ -181,7 +172,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
               </form>
             </section>
           </div>
-        </div>
+        </LayoutContainer>
       </main>
       <Footer />
     </>

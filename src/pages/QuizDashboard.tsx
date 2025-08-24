@@ -13,12 +13,9 @@ const QuizDashboard = () => {
   return (
     <div className="min-h-screen bg-foreground">
       <Navbar />
-      {/* Mobile-only footer */}
       <div className="fixed right-0 bottom-0 left-0 md:hidden">
         <Footer />
       </div>
-
-      {/* Desktop layout */}
       <div className="hidden md:block">
         <LayoutContainer>
           <section className="my-5 flex items-center justify-between">

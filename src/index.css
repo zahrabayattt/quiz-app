@@ -48,6 +48,11 @@
   .my-btn-primary {
     @apply cursor-pointer bg-my-primary;
   }
+
+  .btn-outline {
+    @apply border border-[#D00000] text-[#D00000];
+  }
+
   .flex-center {
     @apply flex items-center justify-center;
   }

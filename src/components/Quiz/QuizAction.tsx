@@ -21,7 +21,7 @@ const QuizAction = ({
       </button>
       <button
         onClick={() => handleQuizDelete(question.id)}
-        className="my-btn-primary my-btn text-foreground"
+        className="my-btn btn-outline"
       >
         Delete
       </button>

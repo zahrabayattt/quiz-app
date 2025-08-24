@@ -38,9 +38,10 @@ const useUpdateQuestion = (questionId: number) => {
       return questionId;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["question", questionId] });
       queryClient.invalidateQueries({ queryKey: ["questions"] });
-      navigate("/dashboard");
       toast.success("Question updated successfully");
+      navigate("/dashboard");
     },
     onError: () => {
       toast.error("Failed to update the question. Please try again");

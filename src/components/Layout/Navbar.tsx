@@ -7,9 +7,6 @@ const Navbar = () => {
   const [isDark, setIsDark] = useState(
     () => document.documentElement.getAttribute("data-theme") === "dark",
   );
-  const now = new Date();
-
-  // If user hasn't chosen, follow OS theme
   useEffect(() => {
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
     const handler = () => {

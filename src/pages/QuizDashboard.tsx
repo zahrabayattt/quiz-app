@@ -17,15 +17,19 @@ const QuizDashboard = () => {
         <Footer />
       </div>
       <LayoutContainer>
-        <section className="py-5 flex items-center justify-between">
-          <h2 className="font-bold text-light-foreground-primary py-6 md:text-2xl">
+        <section className="flex items-center justify-between py-5">
+          <h2 className="py-3 font-bold text-light-foreground-primary md:text-2xl">
             Quiz Dashboard
           </h2>
           <button
-            className="my-btn cursor-pointer items-center gap-2 bg-my-primary text-foreground hidden md:block"
+            className="my-btn hidden cursor-pointer items-center gap-2 bg-my-primary text-foreground md:block"
             onClick={() => navigate("/create-quiz")}
           >
-            <img className="object-contain inline-block pr-2" src={pluscircle} alt="pluscircle" />
+            <img
+              className="inline-block object-contain pr-2"
+              src={pluscircle}
+              alt="pluscircle"
+            />
             New Quiz
           </button>
         </section>

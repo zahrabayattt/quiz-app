@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import type {
   CreateQuizPayload,
   UpdateQuizPayload,
@@ -51,10 +52,14 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
     incorrectAnswers.filter(Boolean).length;
 
   const addCorrect = () => {
+    if (totalAnswersCount >= 4)
+      return toast.error("You can only have 4 answers");
     setCorrectAnswers((s) => [...s, ""]);
     setCorrectAnswersIds((s) => [...s, 0]);
   };
   const addIncorrect = () => {
+    if (totalAnswersCount >= 4)
+      return toast.error("You can only have 4 answers");
     setIncorrectAnswers((s) => [...s, ""]);
     setIncorrectAnswersIds((s) => [...s, 0]);
   };
@@ -63,6 +68,8 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
   const updateIncorrect = (i: number, v: string) =>
     setIncorrectAnswers((s) => s.map((it, idx) => (idx === i ? v : it)));
   const removeCorrect = (i: number) => {
+    if (correctAnswers.length <= 1)
+      return toast.error("At least 1 correct answer needed");
     setCorrectAnswers((s) => s.filter((_, idx) => idx !== i));
     setCorrectAnswersIds((s) => s.filter((_, idx) => idx !== i));
   };
@@ -76,21 +83,13 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
     setError(null);
     setSuccessMsg(null);
 
+    if (!question.trim()) return toast.error("Please enter the question");
+
     const filledCorrect = correctAnswers.filter((s) => s.trim());
     const filledIncorrect = incorrectAnswers.filter((s) => s.trim());
 
-    if (!question.trim()) {
-      setError("Please Enter The Question");
-      return;
-    }
-    if (filledCorrect.length < 1) {
-      setError("At Least 1 Correct Answer Needed");
-      return;
-    }
-    if (filledCorrect.length + filledIncorrect.length < 4) {
-      setError("At Least 4 Answers Needed");
-      return;
-    }
+    if ([...filledCorrect, ...filledIncorrect].some((a) => !a.trim()))
+      return toast.error("Please fill all answers");
 
     const answersPayloadUpdate: UpdateQuizPayload["answers"] = [
       ...filledCorrect.map((text, i) => ({

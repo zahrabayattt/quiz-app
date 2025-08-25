@@ -20,21 +20,47 @@ const useUpdateQuestion = (questionId: number) => {
         AxiosResponse<QuestionModel>
       >(`/quizzes/questions/${questionId}`, {
         question: payload.title,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
-      const answersPromises = payload.answers.map((answer) =>
-        axiosInstance.patch(`/quizzes/answers/${answer.id}`, {
-          answerText: answer.text,
-          isCorrect: answer.isCorrect,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }),
+
+      const { data: prevData } = await axiosInstance.get<QuestionModel>(
+        `/quizzes/questions/${questionId}`,
       );
 
-      await Promise.all(answersPromises);
+      const prevIds = prevData.answers.map((a) => a.id);
+      const newIds = payload.answers.map((a) => a.id).filter(Boolean);
+
+      const deletePromises = prevIds
+        .filter((id) => !newIds.includes(id))
+        .map((id) => axiosInstance.delete(`/quizzes/answers/${id}`));
+
+      const updatePromises = payload.answers
+        .filter((a) => a.id)
+        .map((a) =>
+          axiosInstance.patch(`/quizzes/answers/${a.id}`, {
+            answerText: a.text,
+            isCorrect: a.isCorrect,
+            headers: { "Content-Type": "application/json" },
+          }),
+        );
+
+      const createPromises = payload.answers
+        .filter((a) => !a.id)
+        .map((a) =>
+          axiosInstance.post(`/quizzes/answers`, {
+            questionId,
+            answerText: a.text,
+            isCorrect: a.isCorrect,
+            headers: { "Content-Type": "application/json" },
+          }),
+        );
+
+      await Promise.all([
+        ...deletePromises,
+        ...updatePromises,
+        ...createPromises,
+      ]);
+
       return questionId;
     },
     onSuccess: () => {

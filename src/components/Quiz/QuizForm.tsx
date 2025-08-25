@@ -102,11 +102,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                           value={val}
                           placeholder="Enter Correct Answer"
                           onChange={(v) => form.updateCorrect(i, v)}
-                          onRemove={
-                            form.correctAnswers.length > 1
-                              ? () => form.removeCorrect(i)
-                              : undefined
-                          }
+                          onRemove={() => form.removeCorrect(i)}
                           index={i}
                         />
                       ))}
@@ -133,11 +129,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                           value={val}
                           placeholder="Enter Incorrect Answer"
                           onChange={(v) => form.updateIncorrect(i, v)}
-                          onRemove={
-                            form.incorrectAnswers.length > 1
-                              ? () => form.removeIncorrect(i)
-                              : undefined
-                          }
+                          onRemove={() => form.removeCorrect(i)}
                           index={i}
                         />
                       ))}
@@ -157,7 +149,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                   </button>
                   <button
                     type="submit"
-                    disabled={form.isSubmitting || form.totalAnswersCount < 4}
+                    disabled={form.isSubmitting || form.totalAnswersCount < 2}
                     className="cursor-pointer rounded-md bg-my-primary px-5 py-2 text-foreground disabled:opacity-50"
                   >
                     {form.isSubmitting

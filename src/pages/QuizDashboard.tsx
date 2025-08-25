@@ -31,8 +31,8 @@ const QuizDashboard = () => {
         </section>
         {isLoading && (
           <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center gap-5">
-            <LucideLoader2 className="animate-spin" />
-            <p className="">Questions are loading...</p>
+            <LucideLoader2 className="animate-spin text-my-primary" />
+            <p className="text-my-primary">Questions are loading...</p>
           </div>
         )}
         <QuizList />

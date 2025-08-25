@@ -15,8 +15,8 @@ const QuizEdit = () => {
         <>
           <Navbar />
           <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center gap-5">
-            <LucideLoader2 className="animate-spin" />
-            <p className="">Question is loading...</p>
+            <LucideLoader2 className="animate-spin text-my-primary" />
+            <p className="text-my-primary">Question is loading...</p>
           </div>
         </>
       )}

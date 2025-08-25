@@ -12,7 +12,7 @@ const QuizAction = ({
   handleQuizDelete,
 }: IQuizAction) => {
   return (
-    <div className="absolute mt-10 flex flex-col gap-2 rounded-xl bg-light-foreground-tertiary px-5 py-3">
+    <div className="absolute right-0 mt-2 flex flex-col gap-2 rounded-xl bg-light-foreground-tertiary px-5 py-3 shadow-lg sm:mt-10">
       <button
         onClick={() => handleQuizEdit(question.id)}
         className="my-btn-primary my-btn text-foreground"

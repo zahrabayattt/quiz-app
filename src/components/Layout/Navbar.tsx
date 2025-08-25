@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isDark, setIsDark] = useState(
     () => document.documentElement.getAttribute("data-theme") === "dark",
   );
+  const now = new Date();
 
   // If user hasn't chosen, follow OS theme
   useEffect(() => {
@@ -39,6 +40,7 @@ const Navbar = () => {
         <a href="/" className="text-2xl font-bold text-background">
           Quiz
         </a>
+        <span>{now.toDateString()}</span>
         <div className="flex items-center gap-8">
           <button
             className="btn gap-2 btn-ghost"

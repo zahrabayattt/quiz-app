@@ -40,7 +40,7 @@ const Navbar = () => {
         <a href="/" className="text-2xl font-bold text-background">
           Quiz
         </a>
-        <span>{now.toDateString()}</span>
+        {/* <span>{now.toDateString()}</span> */}
         <div className="flex items-center gap-8">
           <button
             className="btn gap-2 btn-ghost"

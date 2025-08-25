@@ -25,7 +25,7 @@ const Footer = () => {
       {/* History button */}
       <button
         className="flex-center flex-col text-foreground-tertiary hover:text-my-primary"
-        onClick={() => alert("history")}
+        onClick={() => navigate("/")}
       >
         <AiOutlineHistory size={24} />
       </button>

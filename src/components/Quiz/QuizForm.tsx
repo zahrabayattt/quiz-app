@@ -18,7 +18,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
       <main className="bg-foreground min-h-screen pb-20">
         <LayoutContainer>
           {" "}
-          <nav className="my-6 text-sm text-foreground-tertiary">
+          <nav className="py-6 text-sm text-foreground-tertiary">
             <a href="/" className="underline">
               Quiz Dashboard
             </a>{" "}
@@ -32,7 +32,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
               <h1 className="text-3xl font-bold text-my-primary">
                 {mode === "create" ? "Create New QUIZ" : "Edit QUIZ"}
               </h1>
-              <p className="mt-1 mb-6 text-foreground-tertiary">
+              <p className="mt-4 mb-6 text-foreground-tertiary">
                 {mode === "create"
                   ? "Fill in the details to create a new question with at least 4 answers."
                   : "Update the details of your quiz question and answers."}

@@ -129,7 +129,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                           value={val}
                           placeholder="Enter Incorrect Answer"
                           onChange={(v) => form.updateIncorrect(i, v)}
-                          onRemove={() => form.removeCorrect(i)}
+                          onRemove={() => form.removeIncorrect(i)}
                           index={i}
                         />
                       ))}

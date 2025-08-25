@@ -23,7 +23,8 @@
   font-family: Poppins;
 }
 
-@theme {
+:root,
+[data-theme="light"] {
   --color-header-bg: #3535353d;
   --color-background: #262626;
   --color-foreground-primary: #fafafa;
@@ -40,13 +41,47 @@
   --shadow-card-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+[data-theme="dark"] {
+  --color-header-bg: #ffffff1a;
+  --color-background: #f3f2f2;
+  --color-foreground-primary: #e5e5e5;
+  --color-border-primary: #5d5d5d;
+  --color-light-border-primary: #4a4a4a;
+  --color-my-primary: #8c68d6;
+  --color-foreground: #2d2d2d;
+  --color-foreground-tertiary: #a3a3a3;
+  --color-light-foreground-tertiary: #2a2a2a;
+  --color-light-foreground-primary: #e5e5e5;
+  --color-my-secondary: #5ca33a;
+  --color-error: #f87171;
+  --color-background-positive-light: #2c4a21;
+  --shadow-card-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
+}
+
+@theme {
+  --color-header-bg: var(--color-header-bg);
+  --color-background: var(--color-background);
+  --color-foreground-primary: var(--color-foreground-primary);
+  --color-border-primary: var(--color-border-primary);
+  --color-light-border-primary: var(--color-light-border-primary);
+  --color-my-primary: var(--color-my-primary);
+  --color-foreground: var(--color-foreground);
+  --color-foreground-tertiary: var(--color-foreground-tertiary);
+  --color-light-foreground-tertiary: var(--color-light-foreground-tertiary);
+  --color-light-foreground-primary: var(--color-light-foreground-primary);
+  --color-my-secondary: var(--color-my-secondary);
+  --color-error: var(--color-error);
+  --color-background-positive-light: var(--color-background-positive-light);
+  --shadow-card-shadow: var(--shadow-card-shadow);
+}
+
 @layer components {
   .my-btn {
     @apply cursor-pointer rounded-lg px-3 py-2;
   }
 
   .my-btn-primary {
-    @apply cursor-pointer bg-my-primary;
+    @apply cursor-pointer bg-my-primary text-foreground-primary;
   }
 
   .btn-outline {

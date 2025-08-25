@@ -31,18 +31,18 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
     if (initialData) {
       setQuestion(initialData.question);
       setCorrectAnswers(
-        initialData.answers.filter((a) => a.isCorrect).map((a) => a.answerText),
+        initialData.answers.filter((question) => question.isCorrect).map((question) => question.answerText),
       );
       setIncorrectAnswers(
         initialData.answers
-          .filter((a) => !a.isCorrect)
-          .map((a) => a.answerText),
+          .filter((question) => !question.isCorrect)
+          .map((question) => question.answerText),
       );
       setCorrectAnswersIds(
-        initialData.answers.filter((a) => a.isCorrect).map((a) => a.id),
+        initialData.answers.filter((question) => question.isCorrect).map((question) => question.id),
       );
       setIncorrectAnswersIds(
-        initialData.answers.filter((a) => !a.isCorrect).map((a) => a.id),
+        initialData.answers.filter((question) => !question.isCorrect).map((question) => question.id),
       );
     }
   }, [initialData]);
@@ -54,28 +54,28 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
   const addCorrect = () => {
     if (totalAnswersCount >= 4)
       return toast.error("You can only have 4 answers");
-    setCorrectAnswers((s) => [...s, ""]);
-    setCorrectAnswersIds((s) => [...s, 0]);
+    setCorrectAnswers((answer) => [...answer, ""]);
+    setCorrectAnswersIds((answer) => [...answer, 0]);
   };
   const addIncorrect = () => {
     if (totalAnswersCount >= 4)
       return toast.error("You can only have 4 answers");
-    setIncorrectAnswers((s) => [...s, ""]);
-    setIncorrectAnswersIds((s) => [...s, 0]);
+    setIncorrectAnswers((answer) => [...answer, ""]);
+    setIncorrectAnswersIds((answer) => [...answer, 0]);
   };
-  const updateCorrect = (i: number, v: string) =>
-    setCorrectAnswers((s) => s.map((it, idx) => (idx === i ? v : it)));
-  const updateIncorrect = (i: number, v: string) =>
-    setIncorrectAnswers((s) => s.map((it, idx) => (idx === i ? v : it)));
-  const removeCorrect = (i: number) => {
+  const updateCorrect = (AnsNum: number, QText: string) =>
+    setCorrectAnswers((answer) => answer.map((it, id) => (id === AnsNum ? QText : it)));
+  const updateIncorrect = (AnsNum: number, QText: string) =>
+    setIncorrectAnswers((answer) => answer.map((it, id) => (id === AnsNum ? QText : it)));
+  const removeCorrect = (AnsNum: number) => {
     if (correctAnswers.length <= 1)
       return toast.error("At least 1 correct answer needed");
-    setCorrectAnswers((s) => s.filter((_, idx) => idx !== i));
-    setCorrectAnswersIds((s) => s.filter((_, idx) => idx !== i));
+    setCorrectAnswers((answer) => answer.filter((_, id) => id !== AnsNum));
+    setCorrectAnswersIds((answer) => answer.filter((_, id) => id !== AnsNum));
   };
   const removeIncorrect = (i: number) => {
-    setIncorrectAnswers((s) => s.filter((_, idx) => idx !== i));
-    setIncorrectAnswersIds((s) => s.filter((_, idx) => idx !== i));
+    setIncorrectAnswers((answer) => answer.filter((_, id) => id !== i));
+    setIncorrectAnswersIds((answer) => answer.filter((_, id) => id !== i));
   };
 
   const handleSubmit = async (e?: React.FormEvent) => {
@@ -85,10 +85,10 @@ export default function useQuizCreateForm(initialData?: QuestionModel) {
 
     if (!question.trim()) return toast.error("Please enter the question");
 
-    const filledCorrect = correctAnswers.filter((s) => s.trim());
-    const filledIncorrect = incorrectAnswers.filter((s) => s.trim());
+    const filledCorrect = correctAnswers.filter((answer) => answer.trim());
+    const filledIncorrect = incorrectAnswers.filter((answer) => answer.trim());
 
-    if ([...filledCorrect, ...filledIncorrect].some((a) => !a.trim()))
+    if ([...filledCorrect, ...filledIncorrect].some((question) => !question.trim()))
       return toast.error("Please fill all answers");
 
     const answersPayloadUpdate: UpdateQuizPayload["answers"] = [

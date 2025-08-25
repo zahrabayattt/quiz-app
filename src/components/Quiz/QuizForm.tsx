@@ -1,6 +1,7 @@
 import { type QuestionModel } from "../../@types/quiz.model";
 import LayoutContainer from "../../components/Layout/LayoutContainer";
 import useQuizCreateForm from "../../hooks/useQuizCreateForm";
+import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
 import AnswerInput from "./AnswerInput";
 
@@ -14,7 +15,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
   return (
     <>
       <Navbar />
-      <main className="bg-foreground">
+      <main className="bg-foreground min-h-screen pb-20">
         <LayoutContainer>
           {" "}
           <nav className="my-6 text-sm text-foreground-tertiary">
@@ -139,7 +140,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                 {form.successMsg && (
                   <div className="text--my-secondary">{form.successMsg}</div>
                 )}
-                <div className="flex items-center justify-end gap-4">
+                <div className="flex items-center justify-end gap-4 pb-8">
                   <button
                     type="button"
                     className="cursor-pointer rounded-md border border-foreground-tertiary px-5 py-2 text-border-primary"
@@ -164,6 +165,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
             </section>
           </div>
         </LayoutContainer>
+        <Footer />
       </main>
     </>
   );

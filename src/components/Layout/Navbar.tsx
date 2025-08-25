@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <header className="bg-header-bg py-4">
       <LayoutContainer className="flex items-center justify-between">
-        <a href="/" className="text-2xl font-bold text-white">
+        <a href="/" className="text-2xl font-bold text-background">
           Quiz
         </a>
         <div className="flex items-center gap-8">

@@ -17,8 +17,8 @@ const QuizDashboard = () => {
         <Footer />
       </div>
       <LayoutContainer>
-        <section className="flex items-center justify-between py-5">
-          <h2 className="py-3 font-bold text-light-foreground-primary md:text-2xl">
+        <section className="flex items-center justify-between py-3 pt-8">
+          <h2 className="font-bold text-light-foreground-primary md:text-2xl">
             Quiz Dashboard
           </h2>
           <button

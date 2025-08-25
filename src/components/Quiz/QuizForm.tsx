@@ -1,7 +1,6 @@
 import { type QuestionModel } from "../../@types/quiz.model";
 import LayoutContainer from "../../components/Layout/LayoutContainer";
 import useQuizCreateForm from "../../hooks/useQuizCreateForm";
-import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
 import AnswerInput from "./AnswerInput";
 
@@ -166,7 +165,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
           </div>
         </LayoutContainer>
       </main>
-      <Footer />
     </>
   );
 };

@@ -20,21 +20,49 @@ const useUpdateQuestion = (questionId: number) => {
         AxiosResponse<QuestionModel>
       >(`/quizzes/questions/${questionId}`, {
         question: payload.title,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
-      const answersPromises = payload.answers.map((answer) =>
-        axiosInstance.patch(`/quizzes/answers/${answer.id}`, {
-          answerText: answer.text,
-          isCorrect: answer.isCorrect,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }),
+
+      const { data: existingQuestion } = await axiosInstance.get<QuestionModel>(
+        `/quizzes/questions/${questionId}`,
       );
 
-      await Promise.all(answersPromises);
+      const existingAnswerIds = existingQuestion.answers.map(
+        (answer) => answer.id,
+      );
+      const updatedAnswerIds = payload.answers
+        .map((answer) => answer.id)
+        .filter(Boolean);
+
+      const deleteAnswers = existingAnswerIds
+        .filter((id) => !updatedAnswerIds.includes(id))
+        .map((answerId) =>
+          axiosInstance.delete(`/quizzes/answers/${answerId}`),
+        );
+
+      const updateAnswers = payload.answers
+        .filter((answer) => answer.id)
+        .map((answer) =>
+          axiosInstance.patch(`/quizzes/answers/${answer.id}`, {
+            answerText: answer.text,
+            isCorrect: answer.isCorrect,
+            headers: { "Content-Type": "application/json" },
+          }),
+        );
+
+      const createAnswers = payload.answers
+        .filter((answer) => !answer.id)
+        .map((answer) =>
+          axiosInstance.post(`/quizzes/answers`, {
+            quizId: questionId,
+            answerText: answer.text,
+            isCorrect: answer.isCorrect,
+            headers: { "Content-Type": "application/json" },
+          }),
+        );
+
+      await Promise.all([...deleteAnswers, ...updateAnswers, ...createAnswers]);
+
       return questionId;
     },
     onSuccess: () => {

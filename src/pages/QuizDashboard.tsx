@@ -22,10 +22,10 @@ const QuizDashboard = () => {
             Quiz Dashboard
           </h2>
           <button
-            className="my-btn flex cursor-pointer items-center gap-2 bg-my-primary text-foreground"
+            className="my-btn cursor-pointer items-center gap-2 bg-my-primary text-foreground hidden md:block"
             onClick={() => navigate("/create-quiz")}
           >
-            <img className="object-contain" src={pluscircle} alt="pluscircle" />
+            <img className="object-contain inline-block pr-2" src={pluscircle} alt="pluscircle" />
             New Quiz
           </button>
         </section>

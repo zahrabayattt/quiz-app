@@ -8,7 +8,7 @@ interface IQuizCard {
 const QuizCard = ({ question }: IQuizCard) => {
   return (
     <>
-      <h3 className="mt-3 mb-5 text-xl font-bold text-light-foreground-primary">
+      <h3 className="mt-3 mb-5 md:text-xl font-bold text-light-foreground-primary">
         {question.question}
       </h3>
       {question.answers.map((answer) => (

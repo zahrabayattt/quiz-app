@@ -7,7 +7,7 @@ const LayoutContainer = ({
   children: ReactNode;
   className?: string;
 }) => {
-  return <div className={`container mx-auto ${className}`}>{children}</div>;
+  return <div className={`container mx-auto px-6 ${className}`}>{children}</div>;
 };
 
 export default LayoutContainer;

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { type QuestionModel } from "../../@types/quiz.model";
 import LayoutContainer from "../../components/Layout/LayoutContainer";
 import useQuizCreateForm from "../../hooks/useQuizCreateForm";
@@ -12,6 +13,7 @@ interface IQuizForm {
 
 const QuizForm = ({ mode, initialData }: IQuizForm) => {
   const form = useQuizCreateForm(initialData);
+  const navigate = useNavigate()
   return (
     <>
       <Navbar />
@@ -144,6 +146,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                   <button
                     type="button"
                     className="cursor-pointer rounded-md border border-foreground-tertiary px-5 py-2 text-border-primary"
+                    onClick={() => navigate ("/")}
                   >
                     Cancel
                   </button>

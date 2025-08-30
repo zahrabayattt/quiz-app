@@ -17,7 +17,7 @@ const QuizCard = ({ question }: IQuizCard) => {
       <hr className="border-0.5 mt-7 mb-5 border-light-border-primary"></hr>
       <div>
         <button
-          className="my-btn-primary my-btn cursor-pointer text-foreground"
+          className="my-btn-primary my-btn cursor-pointer text-white"
           onClick={() => {
             toast.success("Your answer is being reviewed");
           }}

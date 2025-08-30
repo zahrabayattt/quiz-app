@@ -39,7 +39,7 @@ const QuizList = () => {
           <section className="flex items-center justify-between">
             <p className="text-foreground-tertiary text-sm">John Doe Feb 28 , 2025</p>
             <div className="flex items-center justify-center gap-3">
-              <button className="flex items-center rounded-2xl bg-background-positive-light px-4 py-1 text-my-secondary">
+              <button className="flex items-center rounded-2xl bg-background-positive-light px-4 py-1 text-btn-my">
                 Publish
               </button>
               <div className="relative flex">

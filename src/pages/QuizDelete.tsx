@@ -33,11 +33,11 @@ const DeleteQuizModal = ({
       <div className="bg-foreground rounded-lg shadow-lg w-full max-w-md">
         <div className="p-6">
           <h3 className="text-xl font-bold text-background mb-2">
-            Delete : {quizTitle}
+            <span className="text-error">Delete</span> : {quizTitle}
           </h3>
           
           <p className="text-foreground-tertiary mb-6">
-            Are you sure you want to delete [{quizTitle}]?
+            Are you sure you want to delete [<span className="text-error">{quizTitle}</span>]?
           </p>
           
           <div className="mb-6">

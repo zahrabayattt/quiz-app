@@ -5,10 +5,10 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="shadow-t-lg fixed bottom-0 left-0 flex h-16 w-full items-center justify-around bg-foreground md:hidden">
+    <div className="fixed inset-x-0 z-50 bottom-0 flex h-16 items-center justify-around bg-foreground shadow-t-lg md:hidden">
       {/* Home button */}
       <button
-        className="flex-center flex-col text-foreground-tertiary hover:text-my-primary"
+        className="inset-x-0 z-50 flex-center flex-col text-foreground-tertiary hover:text-my-primary"
         onClick={() => navigate("/")}
       >
         <AiOutlineHome size={24} />
@@ -16,7 +16,7 @@ const Footer = () => {
 
       {/* Add button */}
       <button
-        className="flex-center -mt-8 h-16 w-16 rounded-full bg-my-primary text-foreground shadow-lg"
+        className="inset-x-0 z-50 flex-center -mt-8 h-16 w-16 rounded-full bg-my-primary text-foreground shadow-lg"
         onClick={() => navigate("/create-quiz")}
       >
         <AiOutlinePlus size={28} />
@@ -24,7 +24,7 @@ const Footer = () => {
 
       {/* History button */}
       <button
-        className="flex-center flex-col text-foreground-tertiary hover:text-my-primary"
+        className="inset-x-0 z-50 flex-center flex-col text-foreground-tertiary hover:text-my-primary"
         onClick={() => navigate("/")}
       >
         <AiOutlineHistory size={24} />

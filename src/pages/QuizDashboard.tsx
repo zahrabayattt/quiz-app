@@ -22,7 +22,7 @@ const QuizDashboard = () => {
             Quiz Dashboard
           </h2>
           <button
-            className="my-btn hidden cursor-pointer items-center gap-2 bg-my-primary text-foreground md:block"
+            className="my-btn hidden cursor-pointer items-center gap-2 bg-my-primary text-white md:block"
             onClick={() => navigate("/create-quiz")}
           >
             <img

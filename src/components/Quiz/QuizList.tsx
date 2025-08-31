@@ -1,8 +1,9 @@
-import { LucideEllipsisVertical } from "lucide-react";
+import { LucideDot, LucideEllipsisVertical } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import type { QuestionModel } from "../../@types/quiz.model";
 import useGetQuestions from "../../hooks/use-get-questions";
+import { specificDate } from "../../lib/utils";
 import DeleteQuizModal from "../../pages/QuizDelete";
 import QuizAction from "./QuizAction";
 import QuizCard from "./QuizCard";
@@ -37,9 +38,13 @@ const QuizList = () => {
           className="rounded-xl border border-light-border-primary p-6"
         >
           <section className="flex items-center justify-between">
-            <p className="text-sm text-foreground-tertiary">
-              John Doe Feb 28 , 2025
-            </p>
+            <div className="flex">
+              <p className="text-sm text-foreground-tertiary">John Doe</p>
+              <LucideDot />
+              <p className="text-sm text-foreground-tertiary">
+                {specificDate(question.createdAt)}
+              </p>
+            </div>
             <div className="flex items-center justify-center gap-3">
               <button className="flex items-center rounded-2xl bg-background-positive-light px-4 py-1 text-my-secondary dark:text-white">
                 Publish

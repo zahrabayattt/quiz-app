@@ -8,3 +8,12 @@ export const axiosInstance = axios.create({
     Authorization: `Bearer ${accessToken}`,
   },
 });
+
+export const specificDate = (createdDate: Date) => {
+  const date = new Date(createdDate);
+  return date.toLocaleDateString("en-us", {
+    month: "short",
+    year: "numeric",
+    day: "numeric",
+  });
+};

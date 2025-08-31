@@ -30,16 +30,18 @@ const QuizList = () => {
   };
 
   return (
-    <div className="py-8 flex flex-col gap-10">
+    <div className="flex flex-col gap-10 py-8">
       {questions.map((question: QuestionModel) => (
         <div
           key={question.id}
           className="rounded-xl border border-light-border-primary p-6"
         >
           <section className="flex items-center justify-between">
-            <p className="text-foreground-tertiary text-sm">John Doe Feb 28 , 2025</p>
+            <p className="text-sm text-foreground-tertiary">
+              John Doe Feb 28 , 2025
+            </p>
             <div className="flex items-center justify-center gap-3">
-              <button className="flex items-center rounded-2xl bg-background-positive-light px-4 py-1 text-btn-my">
+              <button className="flex items-center rounded-2xl bg-background-positive-light px-4 py-1 text-my-secondary dark:text-white">
                 Publish
               </button>
               <div className="relative flex">

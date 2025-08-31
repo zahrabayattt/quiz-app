@@ -15,7 +15,7 @@ const QuizAction = ({
     <div className="absolute right-0 mt-2 flex flex-col gap-2 rounded-xl bg-light-foreground-tertiary px-5 py-3 shadow-lg sm:mt-10">
       <button
         onClick={() => handleQuizEdit(question.id)}
-        className="my-btn-primary my-btn text-foreground"
+        className="my-btn-primary my-btn text-white"
       >
         Edit
       </button>

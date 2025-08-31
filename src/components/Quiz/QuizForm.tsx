@@ -20,9 +20,6 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
       <Navbar />
       <main className="min-h-screen bg-foreground pb-20">
         <LayoutContainer>
-          {/* ===== Header area ===== */}
-          {/* Mobile: title + status side by side */}
-
           <div className="mt-5 flex items-end justify-between md:hidden">
             <h1 className="inline-block self-start text-base font-bold text-my-primary">
               {mode === "create" ? "Create New QUIZ" : "Edit QUIZ"}
@@ -40,9 +37,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
               </div>
             </div>
           </div>
-
-          {/* Desktop */}
-          <div className="mb-6 hidden items-center justify-between gap-4 py-6 md:flex">
+          <div className="hidden items-center justify-between gap-4 py-6 md:flex">
             <nav className="text-sm text-foreground-tertiary">
               <a href="/" className="underline">
                 Quiz Dashboard
@@ -66,16 +61,13 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
               </div>
             </aside>
           </div>
-          {/* ===== /Header area ===== */}
-
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr,300px]">
             <section>
-              {/* Desktop title */}
-              <h1 className="hidden text-xl font-bold text-my-primary md:block md:text-4xl">
+              <h1 className="mb-5 hidden font-bold text-my-primary md:block md:text-4xl">
                 {mode === "create" ? "Create New QUIZ" : "Edit QUIZ"}
               </h1>
 
-              <p className="mb-6 mt-[-10px] text-[10px] text-foreground-tertiary md:mt-1 md:text-sm">
+              <p className="mt-[-10px] mb-6 text-[10px] text-foreground-tertiary md:mt-1 md:text-sm">
                 {mode === "create" ? (
                   <div className="flex flex-col md:block">
                     <span>Fill in the details to create a new </span>{" "}
@@ -105,7 +97,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                 </div>
 
                 <div>
-                  <h2 className="mb-2 text-2xl font-semibold text-background">
+                  <h2 className="mb-2 font-semibold text-background md:text-2xl">
                     Answers
                   </h2>
                   <p className="mb-4 text-sm text-foreground-tertiary">
@@ -185,7 +177,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                   <button
                     type="submit"
                     disabled={form.isSubmitting || form.totalAnswersCount < 2}
-                    className="cursor-pointer rounded-md bg-my-primary px-5 py-2 text-foreground disabled:opacity-50"
+                    className="cursor-pointer rounded-md bg-my-primary px-5 py-2 text-white disabled:opacity-50"
                   >
                     {form.isSubmitting
                       ? mode === "create"

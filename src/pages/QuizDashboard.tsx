@@ -1,5 +1,5 @@
-import { LucideLoader2 } from "lucide-react";
 import { useNavigate } from "react-router";
+import { BounceLoader } from "react-spinners";
 import pluscircle from "../assets/images/plus-circle.png";
 import Footer from "../components/Layout/Footer";
 import LayoutContainer from "../components/Layout/LayoutContainer";
@@ -18,7 +18,7 @@ const QuizDashboard = () => {
       </div>
       <LayoutContainer>
         <section className="flex items-center justify-between py-3 pt-8">
-          <h2 className="font-bold text-light-foreground-primary md:text-2xl">
+          <h2 className="text-xl font-bold text-light-foreground-primary md:text-3xl">
             Quiz Dashboard
           </h2>
           <button
@@ -35,8 +35,7 @@ const QuizDashboard = () => {
         </section>
         {isLoading && (
           <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center gap-5">
-            <LucideLoader2 className="animate-spin text-my-primary" />
-            <p className="text-my-primary">Questions are loading...</p>
+            <BounceLoader color="var(--color-my-primary)" size={60} />
           </div>
         )}
         <QuizList />

@@ -38,7 +38,7 @@
   --color-my-secondary: #417f25;
   --color-error: #ef4444;
   --color-background-positive-light: #daf1d0;
-  --color-btn-my-primary : #cf2828;
+  --color-btn-my-primary: #cf2828;
   --shadow-card-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -54,8 +54,9 @@
   --color-light-foreground-tertiary: #2a2a2a;
   --color-light-foreground-primary: #e5e5e5;
   --color-my-secondary: #5ca33a;
+  --color-my-secondary-button: #daf1d0;
   --color-error: #f87171;
-  --color-btn-my-primary : #fff;
+  --color-btn-my-primary: #fff;
   --color-background-positive-light: #4a952f;
   --shadow-card-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
 }
@@ -74,7 +75,7 @@
   --color-my-secondary: var(--color-my-secondary);
   --color-error: var(--color-error);
   --color-background-positive-light: var(--color-background-positive-light);
-  --color-btn-my-primary : #5dcf28;
+  --color-btn-my-primary: #5dcf28;
   --shadow-card-shadow: var(--shadow-card-shadow);
 }
 

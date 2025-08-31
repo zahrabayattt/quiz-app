@@ -2,11 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
-import type {
-  CreateQuizPayload,
-  QuestionModel,
-  UpdateQuizPayload,
-} from "../@types/quiz.model";
+import type { QuestionModel, UpdateQuizPayload } from "../@types/quiz.model";
 import { axiosInstance } from "../lib/utils";
 
 const useUpdateQuestion = (questionId: number) => {
@@ -15,55 +11,46 @@ const useUpdateQuestion = (questionId: number) => {
 
   return useMutation({
     mutationFn: async (payload: UpdateQuizPayload) => {
-      await axiosInstance.patch<
-        Partial<CreateQuizPayload>,
+      const { data: updatedQuestion } = await axiosInstance.patch<
+        Partial<UpdateQuizPayload>,
         AxiosResponse<QuestionModel>
-      >(`/quizzes/questions/${questionId}`, {
-        question: payload.title,
-        headers: { "Content-Type": "application/json" },
-      });
+      >(`/quizzes/questions/${questionId}`, { question: payload.title });
 
-      const { data: existingQuestion } = await axiosInstance.get<QuestionModel>(
-        `/quizzes/questions/${questionId}`,
-      );
+      const answersToDelete = updatedQuestion.answers
+        .filter(
+          (existingAnswer) =>
+            !payload.answers.find(
+              (newAnswer) => newAnswer.id === existingAnswer.id,
+            ),
+        )
+        .map((answer) => axiosInstance.delete(`/quizzes/answers/${answer.id}`));
 
-      const existingAnswerIds = existingQuestion.answers.map(
-        (answer) => answer.id,
-      );
-      const updatedAnswerIds = payload.answers
-        .map((answer) => answer.id)
-        .filter(Boolean);
-
-      const deleteAnswers = existingAnswerIds
-        .filter((id) => !updatedAnswerIds.includes(id))
-        .map((answerId) =>
-          axiosInstance.delete(`/quizzes/answers/${answerId}`),
-        );
-
-      const updateAnswers = payload.answers
+      const answersToUpdate = payload.answers
         .filter((answer) => answer.id)
         .map((answer) =>
           axiosInstance.patch(`/quizzes/answers/${answer.id}`, {
             answerText: answer.text,
             isCorrect: answer.isCorrect,
-            headers: { "Content-Type": "application/json" },
           }),
         );
 
-      const createAnswers = payload.answers
+      const answersToCreate = payload.answers
         .filter((answer) => !answer.id)
         .map((answer) =>
           axiosInstance.post(`/quizzes/answers`, {
             quizId: questionId,
             answerText: answer.text,
             isCorrect: answer.isCorrect,
-            headers: { "Content-Type": "application/json" },
           }),
         );
 
-      await Promise.all([...deleteAnswers, ...updateAnswers, ...createAnswers]);
+      await Promise.all([
+        ...answersToDelete,
+        ...answersToUpdate,
+        ...answersToCreate,
+      ]);
 
-      return questionId;
+      return updatedQuestion;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["question", questionId] });

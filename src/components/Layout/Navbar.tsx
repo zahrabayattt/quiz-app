@@ -50,9 +50,9 @@ const Navbar = () => {
             <LucideChevronLast />
           </div>
         )}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 md:gap-6">
           <button
-            className="btn gap-2 border-none btn-ghost"
+            className="btn gap-2 border-none btn-ghost focus:border-none"
             aria-label="Toggle dark mode"
             onClick={toggle}
             title={isDark ? "Switch to light" : "Switch to dark"}

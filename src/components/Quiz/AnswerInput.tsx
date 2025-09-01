@@ -28,7 +28,7 @@ export default function AnswerInput({
           type="button"
           aria-label={`remove-answer-${index ?? ""}`}
           onClick={onRemove}
-          className="inline-flex items-center justify-center rounded-md bg-transparent p-2 text-error cursor-pointer"
+          className="inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent p-2 text-error"
         >
           <LuTrash2 />
         </button>

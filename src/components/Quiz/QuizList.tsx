@@ -38,10 +38,12 @@ const QuizList = () => {
           className="rounded-xl border border-light-border-primary p-6"
         >
           <section className="flex items-center justify-between">
-            <div className="flex">
-              <p className="text-sm text-foreground-tertiary">John Doe</p>
+            <div className="flex items-center justify-between">
+              <p className="text-xs whitespace-nowrap text-foreground-tertiary md:text-sm">
+                John Doe
+              </p>
               <LucideDot />
-              <p className="text-sm text-foreground-tertiary">
+              <p className="text-xs whitespace-nowrap text-foreground-tertiary md:text-sm">
                 {specificDate(question.createdAt)}
               </p>
             </div>

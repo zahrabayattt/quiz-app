@@ -26,7 +26,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
             </h1>
             <div className="flex flex-col">
               <div className="flex items-center justify-end gap-2">
-                <span className="text-sm text-border-primary">Status</span>
+                <span className="text-sm">Status</span>
                 <StatusToggle
                   checked={form.statusPublic}
                   onChange={(n) => form.setStatusPublic(() => n)}
@@ -43,14 +43,14 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                 Quiz Dashboard
               </a>{" "}
               &nbsp;&gt;&nbsp;{" "}
-              <span className="text-border-primary">
+              <span className="">
                 {mode === "create" ? "New Quiz" : "Edit Quiz"}
               </span>
             </nav>
 
             <aside className="shrink-0">
               <div className="flex items-center justify-end gap-3">
-                <span className="text-sm text-border-primary">Status</span>
+                <span className="text-sm">Status</span>
                 <StatusToggle
                   checked={form.statusPublic}
                   onChange={(n) => form.setStatusPublic(() => n)}

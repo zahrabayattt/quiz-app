@@ -13,7 +13,7 @@ const QuizDashboard = () => {
   return (
     <div className="min-h-screen bg-foreground">
       <Navbar />
-      <div className="fixed right-0 bottom-0 left-0 md:hidden">
+      <div className="fixed right-0 bottom-0 left-0 z-10 md:hidden">
         <Footer />
       </div>
       <LayoutContainer>

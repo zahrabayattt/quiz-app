@@ -5,23 +5,25 @@ import Avatar from "../../assets/images/avatar.png";
 import { customDate } from "../../lib/utils";
 import LayoutContainer from "./LayoutContainer";
 
-interface NavbarProps {
-  currentDateKey: string | null;
-  onPrev: () => void;
-  onNext: () => void;
-  disablePrev: boolean;
-  disableNext: boolean;
-  hasDates: boolean;
-}
+type NavbarProps = {
+  currentDateKey?: string | null;
+  onPrev?: () => void;
+  onNext?: () => void;
+  disablePrev?: boolean;
+  disableNext?: boolean;
+  hasDates?: boolean;
+};
 
-const Navbar = ({
-  currentDateKey,
-  onPrev,
-  onNext,
-  disablePrev,
-  disableNext,
-  hasDates,
-}: NavbarProps) => {
+const Navbar = (props: NavbarProps) => {
+  const {
+    currentDateKey = null,
+    onPrev,
+    onNext,
+    disablePrev = true,
+    disableNext = true,
+    hasDates = false,
+  } = props;
+
   const [isDark, setIsDark] = useState(
     () => document.documentElement.getAttribute("data-theme") === "dark",
   );
@@ -51,6 +53,9 @@ const Navbar = ({
     apply(next ? "dark" : "light");
   };
 
+  // Only show navigator if all the needed bits exist
+  const showNavigator = !!(hasDates && currentDateKey && onPrev && onNext);
+
   return (
     <header className="bg-header-bg py-4">
       <LayoutContainer className="flex items-center justify-between">
@@ -58,13 +63,13 @@ const Navbar = ({
           Quiz
         </a>
 
-        {hasDates && currentDateKey && (
+        {showNavigator && (
           <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-between">
             <button
               aria-label="Previous quiz date"
               onClick={onPrev}
               disabled={disablePrev}
-              className="disabled:opacity-40 cursor-pointer"
+              className="disabled:opacity-40"
             >
               <LucideChevronFirst />
             </button>
@@ -75,7 +80,7 @@ const Navbar = ({
               aria-label="Next quiz date"
               onClick={onNext}
               disabled={disableNext}
-              className="disabled:opacity-40 cursor-pointer"
+              className="disabled:opacity-40"
             >
               <LucideChevronLast />
             </button>

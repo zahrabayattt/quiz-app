@@ -73,7 +73,7 @@ const Navbar = (props: NavbarProps) => {
             >
               <LucideChevronFirst />
             </button>
-            <p className="text-sm font-bold md:mx-5 md:text-base">
+            <p className="text-sm font-bold whitespace-nowrap md:mx-5 md:text-base">
               {customDate(new Date(currentDateKey))}
             </p>
             <button

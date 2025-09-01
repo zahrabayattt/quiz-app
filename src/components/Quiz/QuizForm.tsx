@@ -20,12 +20,12 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
       <Navbar />
       <main className="min-h-screen bg-foreground pb-20">
         <LayoutContainer>
-          <div className="mt-5 flex items-end justify-between md:hidden">
-            <h1 className="inline-block self-start text-base font-bold text-my-primary">
+          <div className="flex items-end justify-between md:hidden">
+            <h1 className="mt-3 inline-block self-start text-base font-bold text-my-primary">
               {mode === "create" ? "Create New QUIZ" : "Edit QUIZ"}
             </h1>
             <div className="flex flex-col">
-              <div className="flex items-center justify-end gap-2">
+              <div className="mt-3 flex items-center justify-end gap-2">
                 <span className="text-sm">Status</span>
                 <StatusToggle
                   checked={form.statusPublic}
@@ -69,7 +69,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
 
               <p className="mt-[-10px] mb-6 text-[10px] text-foreground-tertiary md:mt-1 md:text-sm">
                 {mode === "create" ? (
-                  <div className="flex flex-col md:block">
+                  <div className="mt-3 flex flex-col md:block">
                     <span>Fill in the details to create a new </span>{" "}
                     <span>question with at least 4 answers.</span>
                   </div>

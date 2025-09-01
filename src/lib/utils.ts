@@ -17,3 +17,10 @@ export const specificDate = (createdDate: Date) => {
     day: "numeric",
   });
 };
+
+export const customDate = (createdDate: Date) => {
+  const day = String(createdDate.getDate()).padStart(2, "0");
+  const month = createdDate.toLocaleString("en-us", { month: "long" });
+  const year = createdDate.getFullYear();
+  return `${day} ${month}-${year}`;
+};

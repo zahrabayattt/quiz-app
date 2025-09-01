@@ -1,9 +1,13 @@
+import { LucideChevronFirst, LucideChevronLast } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
 import Avatar from "../../assets/images/avatar.png";
+import useGetQuestions from "../../hooks/use-get-questions";
+import { customDate } from "../../lib/utils";
 import LayoutContainer from "./LayoutContainer";
 
 const Navbar = () => {
+  const { data: questions = [] } = useGetQuestions();
   const [isDark, setIsDark] = useState(
     () => document.documentElement.getAttribute("data-theme") === "dark",
   );
@@ -37,10 +41,18 @@ const Navbar = () => {
         <a href="/" className="text-2xl font-bold text-background">
           Quiz
         </a>
-        {/* <span>{now.toDateString()}</span> */}
-        <div className="flex items-center gap-8">
+        {questions?.length > 0 && (
+          <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-between">
+            <LucideChevronFirst />
+            <p className="text-sm font-bold md:mx-5 md:text-base">
+              {customDate(new Date(questions[questions.length - 1].createdAt))}
+            </p>
+            <LucideChevronLast />
+          </div>
+        )}
+        <div className="flex items-center gap-3">
           <button
-            className="btn gap-2 btn-ghost"
+            className="btn gap-2 border-none btn-ghost"
             aria-label="Toggle dark mode"
             onClick={toggle}
             title={isDark ? "Switch to light" : "Switch to dark"}

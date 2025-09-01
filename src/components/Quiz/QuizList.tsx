@@ -1,5 +1,5 @@
 import { LucideDot, LucideEllipsisVertical } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import type { QuestionModel } from "../../@types/quiz.model";
 import useGetQuestions from "../../hooks/use-get-questions";
@@ -13,10 +13,19 @@ interface IActionType {
   questionid: number;
 }
 
-const QuizList = () => {
+const toDateKey = (d: string | Date) => new Date(d).toISOString().slice(0, 10);
+
+const QuizList = ({ selectedDateKey }: { selectedDateKey: string | null }) => {
   const { data: questions = [] } = useGetQuestions();
   const [action, setAction] = useState<IActionType | null>(null);
   const navigate = useNavigate();
+
+  const visible = useMemo(() => {
+    if (!selectedDateKey) return [];
+    return questions.filter(
+      (q: QuestionModel) => toDateKey(q.createdAt) === selectedDateKey,
+    );
+  }, [questions, selectedDateKey]);
 
   const handleQuizAction = (questionid: number) => {
     setAction((prev) =>
@@ -30,9 +39,25 @@ const QuizList = () => {
     navigate(`/edit-quiz/${id}`);
   };
 
+  if (!selectedDateKey) {
+    return (
+      <div className="py-8 text-center text-foreground-tertiary">
+        No quizzes yet.
+      </div>
+    );
+  }
+
+  if (visible.length === 0) {
+    return (
+      <div className="py-8 text-center text-foreground-tertiary">
+        No quizzes for this date.
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-10 py-8">
-      {questions.map((question: QuestionModel) => (
+      {visible.map((question: QuestionModel) => (
         <div
           key={question.id}
           className="rounded-xl border border-light-border-primary p-6"

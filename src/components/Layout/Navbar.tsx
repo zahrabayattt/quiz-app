@@ -2,15 +2,30 @@ import { LucideChevronFirst, LucideChevronLast } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
 import Avatar from "../../assets/images/avatar.png";
-import useGetQuestions from "../../hooks/use-get-questions";
 import { customDate } from "../../lib/utils";
 import LayoutContainer from "./LayoutContainer";
 
-const Navbar = () => {
-  const { data: questions = [] } = useGetQuestions();
+interface NavbarProps {
+  currentDateKey: string | null;
+  onPrev: () => void;
+  onNext: () => void;
+  disablePrev: boolean;
+  disableNext: boolean;
+  hasDates: boolean;
+}
+
+const Navbar = ({
+  currentDateKey,
+  onPrev,
+  onNext,
+  disablePrev,
+  disableNext,
+  hasDates,
+}: NavbarProps) => {
   const [isDark, setIsDark] = useState(
     () => document.documentElement.getAttribute("data-theme") === "dark",
   );
+
   useEffect(() => {
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
     const handler = () => {
@@ -35,21 +50,38 @@ const Navbar = () => {
     setIsDark(next);
     apply(next ? "dark" : "light");
   };
+
   return (
     <header className="bg-header-bg py-4">
       <LayoutContainer className="flex items-center justify-between">
         <a href="/" className="text-2xl font-bold text-background">
           Quiz
         </a>
-        {questions?.length > 0 && (
+
+        {hasDates && currentDateKey && (
           <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-between">
-            <LucideChevronFirst />
+            <button
+              aria-label="Previous quiz date"
+              onClick={onPrev}
+              disabled={disablePrev}
+              className="disabled:opacity-40 cursor-pointer"
+            >
+              <LucideChevronFirst />
+            </button>
             <p className="text-sm font-bold md:mx-5 md:text-base">
-              {customDate(new Date(questions[questions.length - 1].createdAt))}
+              {customDate(new Date(currentDateKey))}
             </p>
-            <LucideChevronLast />
+            <button
+              aria-label="Next quiz date"
+              onClick={onNext}
+              disabled={disableNext}
+              className="disabled:opacity-40 cursor-pointer"
+            >
+              <LucideChevronLast />
+            </button>
           </div>
         )}
+
         <div className="flex items-center gap-1 md:gap-6">
           <button
             className="btn gap-2 border-none btn-ghost focus:border-none"

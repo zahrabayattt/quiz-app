@@ -16,7 +16,7 @@ export default function AnswerInput({
   index,
 }: Props) {
   return (
-    <div className="flex items-start gap-3">
+    <div className="flex items-start gap-1 md:gap-3">
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}

@@ -21,7 +21,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
       <main className="min-h-screen bg-foreground pb-20">
         <LayoutContainer>
           <div className="flex items-end justify-between md:hidden">
-            <h1 className="mt-3 inline-block self-start text-base font-bold text-my-primary">
+            <h1 className="mt-3 inline-block self-start text-[18px] font-bold text-my-primary">
               {mode === "create" ? "Create New QUIZ" : "Edit QUIZ"}
             </h1>
             <div className="flex flex-col">

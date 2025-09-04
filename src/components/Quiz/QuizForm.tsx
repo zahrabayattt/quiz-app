@@ -104,7 +104,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                     Fill Correct Answers & Incorrect Answers.
                   </p>
 
-                  <div className="relative mb-6 rounded-lg border p-4 shadow-card-shadow">
+                  <div className="relative mb-6 overflow-hidden rounded-lg border p-4 shadow-card-shadow">
                     <div className="absolute top-0 bottom-0 left-0 w-2 rounded-l-md bg-my-secondary" />
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="font-medium text-my-primary">
@@ -132,7 +132,7 @@ const QuizForm = ({ mode, initialData }: IQuizForm) => {
                     </div>
                   </div>
 
-                  <div className="relative rounded-lg border p-4 shadow-card-shadow">
+                  <div className="relative overflow-hidden rounded-lg border p-4 shadow-card-shadow">
                     <div className="absolute top-0 bottom-0 left-0 w-2 rounded-l-md bg-red-600" />
                     <div className="mb-4 flex items-center justify-between">
                       <h3 className="font-medium text-my-primary">
